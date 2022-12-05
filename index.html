@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas Testing</title>
+        <style type="text/css">
+            canvas {
+                border: 1px solid rgb(0, 0, 0);
+                background-color: rgb(255, 255, 255);
+            }
+
+            body {
+                margin: 0;
+            }
+            .grid-container {
+                display: grid;
+                
+                background-color: rgba(0, 0, 0, 0.8);
+                grid-gap: 2px;
+                padding: 20px;
+            }
+
+            .grid-item {
+                background-color: rgba(9, 131, 13, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.8);
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .end-zone {
+                background-color: rgba(251, 1, 1, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .left-border {
+                border-left: 1px solid rgba(255, 255, 255, 0.8);
+            }
+            
+            .right-border {
+                border-right: 1px solid rgba(255, 255, 255, 0.8);
+            }
+
+            .scrimmage-line {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            }
+
+        </style>
+    </head>
+<body id = "body">
+    <h2>Bench</h2>
+    <h3>Available Players:</h3>
+    <ol>
+        <li><button onclick="new_blocker('KX');"> Kroxigor </button></li>
+        <li><button onclick="new_blocker('SB');"> New Saurus Blocker </button></li>
+        <li><button onclick="new_blocker('SK');"> Skink </button></li>
+        <li><button onclick="new_blocker('CS');"> Chameleon Skink </button></li>
+    </ol>
+    <div id="bench"></div>
+
+    <!--<img id="drag1" src="SB.svg" draggable="true" ondragstart="drag(event)" width="75" height="75">-->
+    <!--<canvas></canvas>-->
+    <div id="drawnGrid" class="grid-container"></div>
+    <script src="canvas.js"></script>
+</body>
+</html>

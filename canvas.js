@@ -1,26 +1,3 @@
-/*var canvas = document.querySelector('canvas');
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-
-var box_width = window.innerWidth/12
-
-var c = canvas.getContext("2d");
-c.fillStyle = "#26A212";
-
-var starting_x_location = 0
-var starting_y_location = 0
-
-for (let i = 0; i < 12; i++) {
-    console.log(starting_y_location)
-    for (let i = 0; i < 12; i++) {
-        c.fillRect(starting_x_location, starting_y_location, box_width - 10, box_width - 10)
-        starting_x_location = (starting_x_location + box_width)
-    }
-    starting_x_location = 0
-    starting_y_location = (starting_y_location + box_width)
-};
-*/
-
 function allowDrop(ev) {
     ev.preventDefault();
 }

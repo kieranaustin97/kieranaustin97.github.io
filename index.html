@@ -55,14 +55,19 @@
             </div>
           </nav>
     </header>
+    <h1></h1>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Team Selection
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" onclick="change_team(crocodile_dict);">Crocodiles</a></li>
+          <li><a class="dropdown-item" onclick="change_team(orc_dict);">Orcs</a></li>
+        </ul>
+      </div>
     <h2>Bench</h2>
     <h3>Available Players:</h3>
-    <ol>
-        <li><button onclick="new_blocker('KX');"> Kroxigor </button></li>
-        <li><button onclick="new_blocker('SB');"> New Saurus Blocker </button></li>
-        <li><button onclick="new_blocker('SK');"> Skink </button></li>
-        <li><button onclick="new_blocker('CS');"> Chameleon Skink </button></li>
-    </ol>
+    
     <div id="bench"></div>
 
     <!--<img id="drag1" src="SB.svg" draggable="true" ondragstart="drag(event)" width="75" height="75">-->

@@ -56,31 +56,47 @@ for (let i = 15; i < 195; i += 15) {
     document.getElementById('gridBox' + (i + 11)).className += (" left-border");
 };
 
+//Team lists
+var crocodile_dict = {
+    "KX": "Kroxigor",
+    "SB": "Saurus Blocker",
+    "SK": "Skink",
+    "CS": "Chameleon Skink"
+  };
+var orc_dict = {
+    "UT": "Untrained Troll",
+    "GB": "Goblin",
+    "BU": "Big Un",
+    "BL": "Blitzer",
+    "TH": "Thrower",
+    "LM": "Linemen",
+};
+
+function change_team(race_dict) {
+
+    document.getElementById("bench").innerHTML=""
+
+    for (const [key, value] of Object.entries(race_dict)) {
+        var button = document.createElement('button');
+        var text = document.createTextNode(value);
+        button.appendChild(text);
+        button.onclick = function() {new_player(key)};
+        document.getElementById("bench").appendChild(button);
+    };
+};
 
 //Create new players
 var playerCounter = 1;
 
-function new_blocker(player_type) {
+function new_player(player_type) {
     var img = document.createElement('img');
     img.id = "drag" + playerCounter;
     playerCounter = playerCounter + 1;
-    switch(player_type) {
-        case "KX":
-            img.src = "KX.svg";
-            break;
-        case "SB":
-            img.src = "SB.svg";
-            break;
-        case "SK":
-            img.src = "SK.svg";
-            break;
-        case "CS":
-            img.src = "CS.svg";
-    };
+    img.src = player_type+".svg";
 
     img.draggable = true;
     img.setAttribute('ondragstart', 'drag(event)');
     img.width = "75";
     img.height = "75";
     document.getElementById("bench").appendChild(img);
-}
+};

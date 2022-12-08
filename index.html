@@ -41,9 +41,15 @@
             }
 
             .scrimmage-line {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.8);
             }
 
+            .playerContainer {
+                width: 100px;
+                height: 100px;
+                background-image: url("KX.svg");
+            }
+            
         </style>
         
     </head>
@@ -66,8 +72,8 @@
         </ul>
       </div>
     <h2>Bench</h2>
-    <h3>Available Players:</h3>
-    
+    <div><h3>Available Players:</h3></div>
+    <div id="playerButtons"></div>
     <div id="bench"></div>
 
     <!--<img id="drag1" src="SB.svg" draggable="true" ondragstart="drag(event)" width="75" height="75">-->

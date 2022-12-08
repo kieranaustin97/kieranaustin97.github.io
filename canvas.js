@@ -3,19 +3,20 @@ function allowDrop(ev) {
 }
   
 function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("playerID", ev.target.id);
 }
   
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    var ID = ev.dataTransfer.getData("playerID");
+    ev.target.appendChild(document.getElementById(ID));
 }
+
+const box_width = (window.innerWidth - 40)/15;
+const box_height = (window.innerHeight - 100)/13;
 
 //Set size of HTML grid
 window.onload = function(){
-    var box_width = (window.innerWidth - 40)/15;
-    var box_height = (window.innerHeight - 100)/13;
     var columnWidthString = ""
     var columnHeightString = ""
 
@@ -43,8 +44,8 @@ gridDrawing.innerHTML = htmlString;
 
 //Create End Zone
 for (let i = 0; i <=14; i++) {
-    document.getElementById('gridBox' + i).className += (" end-zone");
-    document.getElementById('gridBox' + (194-i)).className += (" scrimmage-line");
+    document.getElementById('gridBox' + (194-i)).className += (" end-zone");
+    document.getElementById('gridBox' + i).className += (" scrimmage-line");
 };
 //Create Pitch Lines
 for (let i = 15; i < 195; i += 15) {
@@ -75,13 +76,14 @@ var orc_dict = {
 function change_team(race_dict) {
 
     document.getElementById("bench").innerHTML=""
+    document.getElementById("playerButtons").innerHTML=""
 
     for (const [key, value] of Object.entries(race_dict)) {
         var button = document.createElement('button');
         var text = document.createTextNode(value);
         button.appendChild(text);
         button.onclick = function() {new_player(key)};
-        document.getElementById("bench").appendChild(button);
+        document.getElementById("playerButtons").appendChild(button);
     };
 };
 
@@ -96,7 +98,7 @@ function new_player(player_type) {
 
     img.draggable = true;
     img.setAttribute('ondragstart', 'drag(event)');
-    img.width = "75";
-    img.height = "75";
+    img.width = box_height-5;
+    img.height = box_height-5;
     document.getElementById("bench").appendChild(img);
 };

@@ -17,8 +17,8 @@ const box_height = (window.innerHeight - 100)/13;
 
 //Set size of HTML grid
 window.onload = function(){
-    var columnWidthString = ""
-    var columnHeightString = ""
+    var columnWidthString = "";
+    var columnHeightString = "";
 
     for (let i = 0; i < 15; i++) {
             columnWidthString += box_width-7.5 + "px "
@@ -30,17 +30,25 @@ window.onload = function(){
 
     document.getElementById("drawnGrid").style.gridTemplateColumns = columnWidthString;
     document.getElementById("drawnGrid").style.gridTemplateRows = columnHeightString;
+
+    var benchWidthString = "";
+
+    for (let i = 0; i < 11; i++) {
+        benchWidthString += box_width + "px "
+    }
     
+    document.getElementById("drawnBench").style.gridTemplateColumns = benchWidthString;
+    document.getElementById("drawnBench").style.gridTemplateRows = box_height + "px ";
 };
 
 //Draw HTML Grid
 const gridDrawing = document.getElementById("drawnGrid");
 
-let htmlString = "";
+let gridHtmlString = "";
 for (let i = 0; i < 195; i++) {
-    htmlString += '<div id=gridBox' + i + ' ondrop="drop(event)" ondragover="allowDrop(event)" class="grid-item"></div>'
+    gridHtmlString += '<div id=gridBox' + i + ' ondrop="drop(event)" ondragover="allowDrop(event)" class="grid-item"></div>'
 }
-gridDrawing.innerHTML = htmlString;
+gridDrawing.innerHTML = gridHtmlString;
 
 //Create End Zone
 for (let i = 0; i <=14; i++) {
@@ -57,6 +65,16 @@ for (let i = 15; i < 195; i += 15) {
     document.getElementById('gridBox' + (i + 11)).className += (" left-border");
 };
 
+//Draw Bench
+const benchDrawing = document.getElementById("drawnBench");
+
+//Create Bench
+let benchHtmlString = "";
+for (let i = 0; i < 11; i++) {
+    benchHtmlString += '<div id=benchBox' + i + ' class="grid-item"></div>'
+}
+benchDrawing.innerHTML = benchHtmlString;
+
 //Team lists
 var crocodile_dict = {
     "KX": "Kroxigor",
@@ -68,6 +86,13 @@ var orc_dict = {
     "UT": "Untrained Troll",
     "GB": "Goblin",
     "BU": "Big Un",
+    "BL": "Blitzer",
+    "TH": "Thrower",
+    "LM": "Linemen",
+};
+var rat_dict = {
+    "RO": "Rat Ogre",
+    "GR": "Gutter Runner",
     "BL": "Blitzer",
     "TH": "Thrower",
     "LM": "Linemen",
@@ -88,17 +113,29 @@ function change_team(race_dict) {
 };
 
 //Create new players
-var playerCounter = 1;
+var playerCounter = 0;
 
 function new_player(player_type) {
-    var img = document.createElement('img');
-    img.id = "drag" + playerCounter;
-    playerCounter = playerCounter + 1;
-    img.src = player_type+".svg";
+    if (playerCounter < 11) {
+        const outerDiv = document.createElement("div");
+        outerDiv.setAttribute('class','player-icon')
+        outerDiv.draggable = true;
+        outerDiv.id = "drag" + playerCounter;
+        outerDiv.setAttribute('ondragstart', 'drag(event)');
 
-    img.draggable = true;
-    img.setAttribute('ondragstart', 'drag(event)');
-    img.width = box_height-5;
-    img.height = box_height-5;
-    document.getElementById("bench").appendChild(img);
+        const playerText = document.createElement("div");
+        playerText.setAttribute('class','text-block circleBase type1')
+        playerText.setAttribute('style', 'height:' + (box_height-2) + "px; width:" + (box_height-2) + "px;")
+        const text = document.createElement('h1')
+        text.innerHTML = player_type
+        playerText.appendChild(text);
+        outerDiv.appendChild(playerText);
+
+        document.getElementById("benchBox" + (playerCounter)).appendChild(outerDiv);
+        playerCounter = playerCounter + 1;
+    }
+    else {
+        console.log("No more space for players on pitch")
+    }
+
 };
